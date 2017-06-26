@@ -1,0 +1,198 @@
+[ image ]
+ In Image Mode, the DPU-DPA shall be capable of binning images at different levels.<END>
+  The centroid confirmation engineering mode shall produce a PROD_CENTROID_CONF.  This mode shall divide a full frame image into a certain regions.  Each region shall be processed to form an 8x8 confirmation image.  The certain confirmation images shall be sent to the solid state recorder as one data product.<END>
+  When observing a new GRB, and the XRT_POS becomes available from the ICU, the DPU-DPA shall shift and resize the image and event windows appropriately.<END>
+  The DPU-DPA shall use the first tracking image accumulated after entering Image mode to locate guide stars using the algorithm described in Appendix C.<END>
+  In image mode, the DPU-DPA shall calculate the memory location to increment for each valid detector event received.  The memory location shall be incremented for each valid event.  Each memory location shall be able to count so many events.  An Image mode exposure shall produce a PROD_IMAGE.<END>
+  The image mode shall consist of a science window.<END>
+The image mode shall shift successive frames according to the calculated spacecraft drift and co-add the frame into an accumulated image.<END>
+  Image mode shall have the ability to produce a Parameterized Finding Chart, PROD_FINDING_CHART, of the image if commanded, using the algorithm described in Appendix C.  The Parameterized Finding Chart shall consist of the brightest sources. Each source shall be parameterized by its position [X,Y] and Intensity/brightness.<END>
+  The DPU-DPA shall calculate drift with respect to the reference frame based on the established guide stars then perform a shift-and-add of the image mode data.<END>
+
+[ callback ]
+ The DPU-TMALI shall install a callback routine to respond to the DCI Error Interrupt.<END>
+  The DPU-SSI shall provide the capability for an application program to install a callback routine to respond to the receive IBG Interrupt.<END>
+  The DPU-SSI shall provide the capability for an application program to install a callback routine to respond to the transmit IBG Interrupt.<END>
+  The DPU-SSI shall provide the capability for an application program to install a callback routine to respond to the SSI Error Interrupt.<END>
+  The DPU-DCI shall provide the capability for an application program to install a callback routine to respond to the Timeout Interrupt Condition (INTTO_EN).<END>
+   	 The DPU-DCI shall provide the capability for an application program to install a callback routine to respond to the DCI Address Limit Interrupt Condition (INTADR_EN).<END>
+  The DPU-DCI shall provide the capability for an application program to install a callback routine to respond to the DCI Error Interrupt (INTERR_EN).<END>
+
+[ ability ]
+  Image mode shall have the ability to produce a Parameterized Finding Chart, PROD_FINDING_CHART, of the image if commanded, using the algorithm described in Appendix C.  The Parameterized Finding Chart shall consist of the brightest sources. Each source shall be parameterized by its position [X,Y] and Intensity/brightness.<END>
+  The DPU-DCI shall provide an application program with the ability to read and write the hardware ping-pong buffers when in Test Mode.<END>
+  The DPU-DCI shall provide an application program with the ability to force a ping-pong buffer swap when the interface is in Test Mode.<END>
+  The DPU-DCI shall provide an application program with the ability to read the current hardware status, including the Data Level Trigger, the Data Timeout Trigger, the DCI Event Mode, and the Normal/Test Mode.<END>
+  The DPU-DCI shall provide an application program with the ability to configure the SCM_DCI_WIN parameters.<END>
+ The DPU-DCI shall provide an application program with the ability to toggle the hardware interface between Normal mode and Test mode.<END>
+
+[ appendix ]
+ The DPU-DPA shall be able to perform tracking based on data collected from the detector by calculating the spacecraft drift using successive tracking frames using the algorithm described in Appendix C.<END>
+ The channel boundary engineering mode shall create an array of look-up table (LUT) channel boundaries, PROD_CHAN_BOUND, from a flat field, and PROD_MN_DATA, using the algorithm described in Appendix C.<END>
+  The DPU-DPA shall use the first tracking image accumulated after entering Image mode to locate guide stars using the algorithm described in Appendix C.<END>
+  Image mode shall have the ability to produce a Parameterized Finding Chart, PROD_FINDING_CHART, of the image if commanded, using the algorithm described in Appendix C.  The Parameterized Finding Chart shall consist of the brightest sources. Each source shall be parameterized by its position [X,Y] and Intensity/brightness.<END>
+
+[ obtain ]
+	The DPU-BOOT CSC shall test and clear DRAM on power-on using the COLD_MEM_SIZE obtained from the SYSTEM_BLOCK.<END>
+  The DPU-DPA will obtain the initial tracking frame time from the ICU.<END>
+  On failure to obtain an acceptable tracking solution, the DPU-DPA shall apply the most recent tracking solution and report an error to DPU-CCM.<END>
+  The DPU-BIT shall perform two write/read/compare tests on the RAM for the MIL-STD-1553B.  The first test shall construct and write half-word (16-bit) values obtained by adding the upper and lower half-words of each each memory address.  The second test shall construct and write the one’s complement of the half-word values used in the first test.<END>
+
+[ accordance ]
+ The DPU-SCUI  shall construct CCSDS Source Packets from Data Packages as defined by CCSDS-102.0-B-4, and in accordance with interface control document 1143-EI-S19121.<END>
+ The DPU-SCUI  shall be capable of packing created CCSDS Source Packets into STPDUs using segmented (grouped) packets for transfer to the SCU as defined by CCSDS-102.0-B-4 and in accordance with interface control document 1143-EI-S19121.<END>
+ The DPU-SCUI  shall notify the SCU of new data by using the Transfer Request Counter in accordance with interface control document 1143-EI-S19121.<END>
+
+[ ms ]
+  The DPU-CCM shall process real-time non-deferred commands within B ms of receipt from the ICU or the SCU.<END>
+ The DPU-SCUI shall cancel the write to each subaddress if the SCU fails to read a pending STPDU after a timeout specified by a value calculated based on the SCU_POLL_RATE parameter provided during initialization, shall record new data to those subaddresses, and report an error to the DPU-CCM.  The SCU_POLL RATE parameter shall have a default setting of J ms and shall be capable of being modified dynamically.<END>
+
+[ apply ]
+The DPU-BOOT CSC shall execute when power is applied to the DPU.<END>
+  On failure to obtain an acceptable tracking solution, the DPU-DPA shall apply the most recent tracking solution and report an error to DPU-CCM.<END>
+
+[ reorder ]
+  The DPU-DPA shall command DPU-TMALI to reorder EVENT data bits as a function of the Detector Electronics Output Format (Science Mode 3, Full-Frame High Res), and the commanded DPU science or engineering mode.  <END>
+  The DPU-DCI shall provide an application program with the capability to command the DCI hardware to reorder the bit sequence of each event's original Detector Electronics Output Format as it is received.<END>
+
+[ sbe ]
+ The DPU-EDAC shall install an ISR to be invoked when an SBE occurs and scrub the location containing the SBE.<END>
+
+[ region ]
+  The centroid confirmation engineering mode shall produce a PROD_CENTROID_CONF.  This mode shall divide a full frame image into a certain regions.  Each region shall be processed to form an 8x8 confirmation image.  The certain confirmation images shall be sent to the solid state recorder as one data product.<END>
+
+[ slave ]
+  The DPU-SSI shall provide the capability for an application program to enable/disable the VME Slave Interrupt on the SCM for the SSI Interface.<END>
+  The DPU-DCI shall provide the capability for an application program to enable/disable the VME Slave Interrupt on the SCM for the DCI Interface.<END>
+
+[ centroid ]
+ There shall be four engineering modes associated with the detector: raw event list mode, channel boundary mode, centroid confirmation mode, and intensifier characteristics mode.<END>
+  The centroid confirmation engineering mode shall produce a PROD_CENTROID_CONF.  This mode shall divide a full frame image into a certain regions.  Each region shall be processed to form an 8x8 confirmation image.  The certain confirmation images shall be sent to the solid state recorder as one data product.<END>
+
+[ delivery ]
+ The DPU-SCUI shall rate-buffer the delivery of STPDUs to the SCU according to the SCU_BUFFER_RATE parameter provided during initialization.  The default value shall provide data to the SCU at a rate of X Kbps and shall be capable of being modified dynamically.<END>
+ The DPU-SCUI shall be capable of preparing one STPDU for delivery to the SCU every M milliseconds, or shall indicate a No Data condition to the SCU by maintaining an un-incremented ST_PDU Transfer Request Counter field.<END>
+
+[ respect ]
+  The DPU-DPA shall calculate drift with respect to the reference frame based on the established guide stars then perform a shift-and-add of the image mode data.<END>
+
+[ interpret ]
+  The DPU-CCM shall interpret and execute/dispatch real-time DPU_CMDs.<END>
+
+[ room ]
+  If the DPU-SCUI FIFO is full when DPU-DPA attempts to enqueue its data product, DPU-DPA shall suspend event processing until room is available on the respective FIFO for the current data product.  Incoming data may be dropped while suspended.  An error shall be reported DPU-CCM.<END>
+
+[ ms. ]
+  The DPU-DPA shall initiate reaction/response to a command from the DPU-CCM with a latency of no greater than 10 ms.<END>
+
+[ id ]
+  The DPU-CCM shall be able to count a consecutively reported error.  When the the count for a particular error ID, exceeds 250 for a particular reporting period, the error code will be replaced with a error code sequence which shall include the original error code and the number of times the error was reported.  <END>
+
+[ group ]
+ The DPU-SCUI  shall be capable of packing created CCSDS Source Packets into STPDUs using segmented (grouped) packets for transfer to the SCU as defined by CCSDS-102.0-B-4 and in accordance with interface control document 1143-EI-S19121.<END>
+
+[ brightness ]
+  Image mode shall have the ability to produce a Parameterized Finding Chart, PROD_FINDING_CHART, of the image if commanded, using the algorithm described in Appendix C.  The Parameterized Finding Chart shall consist of the brightest sources. Each source shall be parameterized by its position [X,Y] and Intensity/brightness.<END>
+
+[ drop ]
+  If the DPU-SCUI FIFO is full when DPU-DPA attempts to enqueue its data product, DPU-DPA shall suspend event processing until room is available on the respective FIFO for the current data product.  Incoming data may be dropped while suspended.  An error shall be reported DPU-CCM.<END>
+
+[ latency ]
+  The DPU-DPA shall initiate reaction/response to a command from the DPU-CCM with a latency of no greater than 10 ms.<END>
+
+[ opposite ]
+  The DPU-BOOT CSC shall toggle the BC_INDEX (selecting the opposite configuration) after reading it during the boot process.<END>
+
+[ nothing ]
+  The DPU-CCM shall support a NOOP command that does nothing but serve as a valid command.<END>
+
+[ incomplete ]
+  The DPU-BOOT CSC shall initialize the BIT_DATA in the SYSTEM_BLOCK to the incomplete/failure state prior to executing Stage 1 BIT.<END>
+
+[ completion ]
+ The DPU-CCM shall notify the ICU upon completion of boot and flight software initialization.<END>
+
+[ resource ]
+ The DPU-SCUI  shall provide the capability to handle high priority data.  High priority data shall be processed before low priority data.  In the condition  that low priority data is being processed when new high priority data arrives, DPU-SCUI shall finish processing the low priority data and then  immediately shift all resources to processing the high priority data.<END>
+
+[ preserve ]
+  The DPU-DPA shall collect event mode data, preserving the time and spatial resolution in the specified event window.<END>
+
+[ reaction ]
+  The DPU-DPA shall initiate reaction/response to a command from the DPU-CCM with a latency of no greater than 10 ms.<END>
+
+[ receiver ]
+ The DPU-ICUI shall install an ISR to be invoked on the SSI receiver interblock gap interrupt, for the receiving and processing of commands from the ICU.<END>
+
+[ walk ]
+  The DPU-EDAC shall contain a background task which walks DRAM to trip single-bit errors (SBEs).<END>
+
+[ stamp ]
+ The DPU-SCUI shall time stamp the secondary header of the Source Packets with the current SC_TIME retrieved from the DPU-TIS module.<END>
+
+[ photon ]
+  When commanded to event mode by the ICU,  the DPU-DPA shall be capable of collecting time-tagged photon events and producing a PROD_EVENT.<END>
+
+[ observe ]
+  When observing a new GRB, and the XRT_POS becomes available from the ICU, the DPU-DPA shall shift and resize the image and event windows appropriately.<END>
+
+[ solid ]
+  The centroid confirmation engineering mode shall produce a PROD_CENTROID_CONF.  This mode shall divide a full frame image into a certain regions.  Each region shall be processed to form an 8x8 confirmation image.  The certain confirmation images shall be sent to the solid state recorder as one data product.<END>
+
+[ trip ]
+  The DPU-EDAC shall contain a background task which walks DRAM to trip single-bit errors (SBEs).<END>
+
+[ unrecognized ]
+  The DPU-CCM shall quietly discard any unrecognized observatory messages (I.e. messages which do not have a DPU command APID).<END>
+
+[ validate ]
+  The Bootstrap Monitor of the DPU-BOOT CSC shall validate commands entered for syntax and number of arguments.<END>
+
+[ discontinue ]
+ The DPU-CCM shall record an error to the LAST_BOOT_IVEC location in EEPROM and discontinue strobing the Watchdog Timer should an unrecoverable software error occur.  An unrecoverable software error is defined as an error that causes a loss of commandability or ground communication.<END>
+
+[ background ]
+  The DPU-EDAC shall contain a background task which walks DRAM to trip single-bit errors (SBEs).<END>
+
+[ loss ]
+ The DPU-CCM shall record an error to the LAST_BOOT_IVEC location in EEPROM and discontinue strobing the Watchdog Timer should an unrecoverable software error occur.  An unrecoverable software error is defined as an error that causes a loss of commandability or ground communication.<END>
+
+[ mhz ]
+ The DPU-BOOT CSC shall set the processor speed  to MHz.<END>
+
+[ calculated ]
+The image mode shall shift successive frames according to the calculated spacecraft drift and co-add the frame into an accumulated image.<END>
+
+[ scrub ]
+ The DPU-EDAC shall install an ISR to be invoked when an SBE occurs and scrub the location containing the SBE.<END>
+
+[ recorder ]
+  The centroid confirmation engineering mode shall produce a PROD_CENTROID_CONF.  This mode shall divide a full frame image into a certain regions.  Each region shall be processed to form an 8x8 confirmation image.  The certain confirmation images shall be sent to the solid state recorder as one data product.<END>
+
+[ bound ]
+ The DPU-DPA shall perform bounds checking before accessing memory.<END>
+
+[ prepare ]
+ The DPU-SCUI shall be capable of preparing one STPDU for delivery to the SCU every M milliseconds, or shall indicate a No Data condition to the SCU by maintaining an un-incremented ST_PDU Transfer Request Counter field.<END>
+
+[ decode ]
+ The DPU-TMALI shall utilize SCM_DCI_SR, along with ERRNO provided by DPU-DCI to decode errors and place them on an error queue for DPU-CCM.<END>
+
+[ occupy ]
+The DPU-BOOT CSC X shall occupy no more than 32 KB of PROM.<END>
+
+[ lookup ]
+  The DPU-CCM shall check the length of a received DPU_CMD against an expected value from a lookup table indexed by FUNCTION code.  If the received value does not match the expected, then the command will be discarded, and an error will be enqueued.<END>
+
+[ branch ]
+  The DPU-BOOT CSC shall include a CPU BIT consisting of a branch test, a fixed point test, a floating point test, an interrupt test, a timer test, and a register test.<END>
+
+[ spatial ]
+  The DPU-DPA shall collect event mode data, preserving the time and spatial resolution in the specified event window.<END>
+
+[ acceptable ]
+  On failure to obtain an acceptable tracking solution, the DPU-DPA shall apply the most recent tracking solution and report an error to DPU-CCM.<END>
+
+[ truncate ]
+  The DPU-DPA will complete the exposure in the time specified by the MODE command - even if it's required to truncate the final tracking frame.<END>
+

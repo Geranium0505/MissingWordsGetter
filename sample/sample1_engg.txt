@@ -1,0 +1,33 @@
+Software documentation is written text or illustration that accompanies computer software. It either explains how it operates or how to use it, and may mean different things to people in different roles.
+
+Documentation is an important part of software engineering. Types of documentation include:
+
+Requirements ? Statements that identify attributes, capabilities, characteristics, or qualities of a system. This is the foundation for what will be or has been implemented.
+Architecture/Design ? Overview of software. Includes relations to an environment and construction principles to be used in design of software components.
+Technical ? Documentation of code, algorithms, interfaces, and APIs.
+End user ? Manuals for the end-user, system administrators and support staff.
+Marketing ? How to market the product and analysis of the market demand.
+Contents  [hide] 
+1	Requirements documentation
+2	Architecture/Design Documentation
+3	Technical documentation
+3.1	Technical documentation embedded in source code
+3.1.1	Literate programming
+3.1.2	Elucidative programming
+4	User documentation
+4.1	Composing user documentation
+5	Documentation and agile development controversy
+6	Marketing documentation
+7	See also
+8	Notes
+9	External links
+Requirements documentation[edit]
+Requirements documentation is the description of what a particular software does or shall do. It is used throughout development to communicate how the software functions or how it is intended to operate. It is also used as an agreement or as the foundation for agreement on what the software will do. Requirements are produced and consumed by everyone involved in the production of software: end users, customers, product managers, project managers, sales, marketing, software architects, usability engineers, interaction designers, developers, and testers, to name a few. Thus, requirements documentation has many different purposes.
+
+Requirements comes in a variety of styles, notations and formality. Requirements can be goal-like (e.g., distributed work environment), close to design (e.g., builds can be started by right-clicking a configuration file and select the 'build' function), and anything in between. They can be specified as statements in natural language, as drawn figures, as detailed mathematical formulas, and as a combination of them all.
+
+The variation and complexity of requirements documentation makes it a proven challenge. Requirements may be implicit and hard to uncover. It is difficult to know exactly how much and what kind of documentation is needed and how much can be left to the architecture and design documentation, and it is difficult to know how to document requirements considering the variety of people who shall read and use the documentation. Thus, requirements documentation is often incomplete (or non-existent). Without proper requirements documentation, software changes become more difficult ? and therefore more error prone (decreased software quality) and time-consuming (expensive).
+
+The need for requirements documentation is typically related to the complexity of the product, the impact of the product, and the life expectancy of the software. If the software is very complex or developed by many people (e.g., mobile phone software), requirements can help to better communicate what to achieve. If the software is safety-critical and can have negative impact on human life (e.g., nuclear power systems, medical equipment, mechanical equipment), more formal requirements documentation is often required. If the software is expected to live for only a month or two (e.g., very small mobile phone applications developed specifically for a certain campaign) very little requirements documentation may be needed. If the software is a first release that is later built upon, requirements documentation is very helpful when managing the change of the software and verifying that nothing has been broken in the software when it is modified.
+
+Traditionally, requirements are specified in requirements documents (e.g. using word processing applications and spreadsheet applications). To manage the increased complexity and changing nature of requirements documentation (and software documentation in general), database-centric systems and special-purpose requirements management tools are advocated.
